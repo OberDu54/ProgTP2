@@ -6,13 +6,10 @@ public class Robinet implements Runnable{
 	
 	private Baignoire baignoire;
 
-	public Robinet(double debit) {
+	public Robinet(double debit, Baignoire b) {
 		super();
 		this.debit = debit;
-	}
-	
-	public void couler() {
-		
+		this.baignoire = b;
 	}
 	
 	public double getDebit() {
@@ -25,8 +22,10 @@ public class Robinet implements Runnable{
 
 	public void run() {
 		try {
-			baignoire.remplir(debit/1000);
-			Thread.sleep(1);
+			while(!baignoire.estPleine()) {
+				baignoire.remplir(debit/1000);
+				Thread.sleep(1);
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

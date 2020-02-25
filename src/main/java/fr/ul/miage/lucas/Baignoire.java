@@ -1,23 +1,15 @@
 package fr.ul.miage.lucas;
 
-public class Baignoire {
+public class Baignoire{
 	
 	private int capacite;
 	
 	private double volume;
-	
-	//private Robinet robinet;
-	
-	//private Fuite fuite;
 
-	public Baignoire(int capacite, Robinet robinet, Fuite fuite) {
+	public Baignoire(int capacite) {
 		super();
 		this.capacite = capacite;
 		this.volume = 0;
-		/*
-		this.robinet = robinet;
-		this.fuite = fuite;
-		*/
 	}
 	
 	public void remplir(double x) {
@@ -27,5 +19,20 @@ public class Baignoire {
 	public void vider(double x) {
 		volume -= x;
 	}
+
+	public int getCapacite() {
+		return capacite;
+	}
+
+	public double getVolume() {
+		return volume;
+	}
 	
+	public boolean estPleine() {
+		if(volume >= capacite) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

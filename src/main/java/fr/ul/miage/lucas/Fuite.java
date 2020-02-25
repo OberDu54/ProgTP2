@@ -6,9 +6,10 @@ public class Fuite implements Runnable{
 	
 	public Baignoire baignoire;
 
-	public Fuite(double debit) {
+	public Fuite(double debit, Baignoire b) {
 		super();
 		this.debit = debit;
+		this.baignoire = b;
 	}
 	
 	public void fuir() {
@@ -25,8 +26,10 @@ public class Fuite implements Runnable{
 
 	public void run() {
 		try {
-			baignoire.vider(debit/1000);
-			Thread.sleep(1);
+			while(!baignoire.estPleine()) {
+				baignoire.vider(debit/1000);
+				Thread.sleep(1);
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
