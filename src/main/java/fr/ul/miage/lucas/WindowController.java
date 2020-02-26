@@ -11,4 +11,9 @@ public class WindowController {
 	
 	@FXML
 	private ProgressBar progressBar;
+	
+	public void coulerEau() {
+		App.robinet.run();
+		App.fuite.run();
+	}
 }
