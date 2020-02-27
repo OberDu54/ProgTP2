@@ -10,10 +10,18 @@ public class WindowController {
 	private Button button;
 	
 	@FXML
+	private Button stopButton;
+	
+	@FXML
 	private ProgressBar progressBar;
 	
 	public void coulerEau() {
-		App.robinet.run();
-		App.fuite.run();
+		App.robinet.start();
+		App.fuite.start();
+	}
+	
+	public void stopperEau() {
+		App.robinet.cancel();
+		App.fuite.cancel();
 	}
 }
