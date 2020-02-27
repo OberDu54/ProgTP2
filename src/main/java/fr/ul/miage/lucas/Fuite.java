@@ -1,19 +1,25 @@
 package fr.ul.miage.lucas;
 
-public class Fuite implements Runnable{
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+
+public class Fuite extends Service<Void>{
 	
-	public double debit;
+	private double debit;
 	
 	public Baignoire baignoire;
+	
+	private boolean running;
 
 	public Fuite(double debit, Baignoire b) {
 		super();
 		this.debit = debit;
 		this.baignoire = b;
+		this.running = false;
 	}
 	
-	public void fuir() {
-		
+	public void stop() {
+		running = false;
 	}
 	
 	public double getDebit() {
@@ -23,17 +29,44 @@ public class Fuite implements Runnable{
 	public void setDebit(double debit) {
 		this.debit = debit;
 	}
-
+	
+	/*
 	public void run() {
+		running = true;
 		try {
-			while(!baignoire.estPleine()) {
+			while(!baignoire.estPleine()&&running) {
 				baignoire.vider(debit/1000);
+				System.out.println("capacite : " + baignoire.getVolume());
 				Thread.sleep(1);
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	*/
+	
+	@Override
+	protected Task createTask() {
+		return new Task<Void>(){
+
+			@Override
+			protected Void call() throws Exception {
+				running = true;
+				try {
+					while(!baignoire.estPleine()&&running) {
+						baignoire.vider(debit/1000);
+						System.out.println("capacite : " + baignoire.getVolume());
+						Thread.sleep(1);
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return null;
+			}
+			
+		};
 	}
 	
 	
