@@ -22,6 +22,10 @@ public class App extends Application{
 	
 	public static Baignoire baignoire;
 	
+	public static Fuite fuite;
+	
+	public static Robinet robinet;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("TP2_Oberhausser");
@@ -41,13 +45,13 @@ public class App extends Application{
 		Options options = new Options();
 		Option cap = new Option("c", "capacity", true, "Capacite de la baignoire");
 		Option remplissage = new Option("r", "remp", true, "Debit de remplissage de la baignoire");
-		Option fuite = new Option("f", "fuite", true, "Debit de fuite");
+		Option debitFuite = new Option("f", "fuite", true, "Debit de fuite");
 		cap.setRequired(false);
 		remplissage.setRequired(false);
-		fuite.setRequired(false);
+		debitFuite.setRequired(false);
 		options.addOption(cap);
 		options.addOption(remplissage);
-		options.addOption(fuite);
+		options.addOption(debitFuite);
 		CommandLineParser parser = new DefaultParser();
 		int c = 100;	//capacite par defaut
 		double r = 2;	//remplissage par defaut
@@ -63,13 +67,44 @@ public class App extends Application{
 			if(line.hasOption('f')) {
 				f = Double.parseDouble(line.getOptionValue('f'));
 			}
-		baignoire = new Baignoire(c, new Robinet(r), new Fuite(f));	
+			baignoire = new Baignoire(c);
+			fuite = new Fuite(f,baignoire);
+			robinet = new Robinet(r,baignoire);
+			int verif = verification(c, r, f);
+			switch(verif) {
+			case(0):
+				LOG.info("Données validées");
+				LOG.info("Lancement...");
+				launch(args);
+				break;
+			case(1):
+				LOG.severe("La capacite de la baignoire doit être supérieure au debit du robinet et de la fuite");
+				break;
+			case(2):
+				LOG.severe("Le débit du robinet ne doit pas être inférieur à celui de la fuite");
+				break;
+			case(3):
+				LOG.severe("Aucun valeur ne doit être nulle");
+				break;
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LOG.info("Lancement...");
-		launch(args);
+	}
+	
+	public static int verification(int cap, double rob, double fuite) {
+		int res = 0;
+		if(cap<=rob || cap<=fuite) {
+			res = 1;
+		}
+		if(rob<=fuite) {
+			res = 2;
+		}
+		if(rob==0||fuite==0||cap==0) {
+			res = 3;
+		}
+		return res;
 	}
 
 }
