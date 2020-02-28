@@ -2,6 +2,7 @@ package fr.ul.miage.lucas;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
 public class WindowController {
@@ -13,7 +14,13 @@ public class WindowController {
 	private Button stopButton;
 	
 	@FXML
+	private Button pauseButton;
+	
+	@FXML
 	private ProgressBar progressBar;
+	
+	@FXML
+	private Label label;
 	
 	public void coulerEau() {
 		App.robinet.start();
