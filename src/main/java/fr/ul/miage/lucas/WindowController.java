@@ -30,5 +30,12 @@ public class WindowController {
 	public void stopperEau() {
 		App.robinet.cancel();
 		App.fuite.cancel();
+		App.robinet.reset();
+		App.fuite.reset();
+	}
+	
+	public void recommencer() {
+		stopperEau();
+		App.baignoire.reinitialiser();
 	}
 }

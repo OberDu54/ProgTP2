@@ -35,4 +35,8 @@ public class Baignoire{
 			return false;
 		}
 	}
+	
+	public void reinitialiser() {
+		this.volume = 0;
+	}
 }

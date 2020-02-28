@@ -33,7 +33,7 @@ public class Fuite extends Service<Void>{
 				while(!baignoire.estPleine()) {
 					baignoire.vider(debit/1000);
 					System.out.println("capacite -- : " + baignoire.getVolume());
-					//Thread.sleep(1);
+					Thread.sleep(1);
 					if(isCancelled()) {
 						break;
 					}

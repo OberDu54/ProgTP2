@@ -27,7 +27,7 @@ public class Robinet extends Service<Void>{
 		try {
 			while(!baignoire.estPleine()) {
 				baignoire.remplir(debit/1000);
-				System.out.println("Capacite : " + baignoire.getVolume());
+				//System.out.println("Capacite : " + baignoire.getVolume());
 				Thread.sleep(1);
 			}
 		} catch (InterruptedException e) {
@@ -45,7 +45,7 @@ public class Robinet extends Service<Void>{
 				while(!baignoire.estPleine()&&!isCancelled()) {
 					baignoire.remplir(debit/1000);
 					System.out.println("capacite ++ : " + baignoire.getVolume());
-					//Thread.sleep(1);
+					Thread.sleep(1);
 					if(isCancelled()) {
 						break;
 					}
