@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="334.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.lucas.WindowController">
+<AnchorPane fx:id="pauseButton" prefHeight="334.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.lucas.WindowController">
    <children>
       <TilePane layoutX="-148.0" layoutY="-148.0" prefHeight="348.0" prefWidth="348.0" />
       <Text fill="#ee0606" layoutX="147.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TP2 Lucas Oberhausser">
@@ -16,11 +16,12 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="button" layoutX="219.0" layoutY="175.0" mnemonicParsing="false" onAction="#coulerEau" text="Lancer" textFill="BLUE">
+      <Button fx:id="button" layoutX="173.0" layoutY="167.0" mnemonicParsing="false" onAction="#coulerEau" prefHeight="25.0" prefWidth="143.0" text="Lancer" textFill="BLUE">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
-      <ProgressBar fx:id="progressBar" layoutX="144.0" layoutY="141.0" prefWidth="200.0" progress="0.0" />
-      <Button fx:id="stopButton" layoutX="224.0" layoutY="213.0" mnemonicParsing="false" onAction='#stopperEau' text="Stop" textFill="RED" />
+      <ProgressBar fx:id="progressBar" layoutX="145.0" layoutY="118.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="stopButton" layoutX="254.0" layoutY="200.0" mnemonicParsing="false" onAction="#stopperEau" prefHeight="25.0" prefWidth="62.0" text="Stop" textFill="RED" />
+      <Button layoutX="174.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Pause" textFill="LIME" />
    </children>
 </AnchorPane>
