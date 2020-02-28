@@ -23,6 +23,9 @@ public class WindowController {
 	private Label label;
 	
 	public void coulerEau() {
+		if(App.baignoire.getVolume()!=0) {
+			App.baignoire.reinitialiser();
+		}
 		App.robinet.start();
 		App.fuite.start();
 	}

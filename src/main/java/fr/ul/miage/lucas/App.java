@@ -11,6 +11,8 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import javafx.application.Application;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -70,25 +72,39 @@ public class App extends Application{
 			baignoire = new Baignoire(c);
 			fuite = new Fuite(f,baignoire);
 			robinet = new Robinet(r,baignoire);
+			fuite.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+				@Override
+				public void handle(WorkerStateEvent event) {
+					fuite.reset();
+				}
+			});
+			robinet.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+				@Override
+				public void handle(WorkerStateEvent event) {
+					robinet.reset();
+					
+				}
+			});
 			int verif = verification(c, r, f);
 			switch(verif) {
 			case(0):
-				LOG.info("Données validées");
+				LOG.info("Donnï¿½es validï¿½es");
 				LOG.info("Lancement...");
 				launch(args);
 				break;
 			case(1):
-				LOG.severe("La capacite de la baignoire doit être supérieure au debit du robinet et de la fuite");
+				LOG.severe("La capacite de la baignoire doit ï¿½tre supï¿½rieure au debit du robinet et de la fuite");
 				break;
 			case(2):
-				LOG.severe("Le débit du robinet ne doit pas être inférieur à celui de la fuite");
+				LOG.severe("Le dï¿½bit du robinet ne doit pas ï¿½tre infï¿½rieur ï¿½ celui de la fuite");
 				break;
 			case(3):
-				LOG.severe("Aucun valeur ne doit être nulle");
+				LOG.severe("Aucun valeur ne doit ï¿½tre nulle");
 				break;
 			}
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			LOG.severe("exeption levee");
 			e.printStackTrace();
 		}
 	}
