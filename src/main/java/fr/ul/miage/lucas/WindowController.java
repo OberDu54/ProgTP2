@@ -28,16 +28,13 @@ public class WindowController {
 	
 	public void coulerEau() {
 		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
-			if(App.baignoire.getVolume()!=0) {
-				App.baignoire.reinitialiser();
-			}
 			App.robinet.start();
 			App.fuite.start();
 		}else {
 			LOG.severe("Le service tourne déjà");
 		}
 	}
-	
+
 	public void stopperEau() {
 		App.robinet.cancel();
 		App.fuite.cancel();
