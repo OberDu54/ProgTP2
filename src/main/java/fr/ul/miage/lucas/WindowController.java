@@ -27,6 +27,7 @@ public class WindowController {
 	private Label label;
 	
 	public void coulerEau() {
+		progressBar.setStyle("-fx-accent: blue;");
 		progressBar.progressProperty().bind(App.robinet.createTask().progressProperty());
 		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
 			App.robinet.start();
@@ -37,6 +38,8 @@ public class WindowController {
 	}
 
 	public void stopperEau() {
+		progressBar.setStyle("-fx-accent: red;");
+		progressBar.progressProperty().unbind();
 		App.robinet.cancel();
 		App.fuite.cancel();
 		App.robinet.reset();
@@ -44,6 +47,7 @@ public class WindowController {
 	}
 	
 	public void recommencer() {
+		progressBar.progressProperty().unbind();
 		stopperEau();
 		progressBar.setProgress(0);
 		App.baignoire.reinitialiser();
