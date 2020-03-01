@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 public class App extends Application{
@@ -73,19 +74,20 @@ public class App extends Application{
 			fuite = new Fuite(f,baignoire);
 			robinet = new Robinet(r,baignoire);
 			fuite.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-				@Override
+				
 				public void handle(WorkerStateEvent event) {
 					fuite.reset();
 				}
 			});
 			robinet.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
-				@Override
 				public void handle(WorkerStateEvent event) {
 					robinet.reset();
 					
 				}
 			});
+			ProgressBar progressBar = new ProgressBar();
+			progressBar.progressProperty().bind(robinet.progressProperty());
 			int verif = verification(c, r, f);
 			switch(verif) {
 			case(0):

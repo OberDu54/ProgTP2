@@ -21,12 +21,13 @@ public class WindowController {
 	private Button pauseButton;
 	
 	@FXML
-	private ProgressBar progressBar;
+	public ProgressBar progressBar;
 	
 	@FXML
 	private Label label;
 	
 	public void coulerEau() {
+		progressBar.progressProperty().bind(App.robinet.createTask().progressProperty());
 		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
 			App.robinet.start();
 			App.fuite.start();
@@ -44,6 +45,7 @@ public class WindowController {
 	
 	public void recommencer() {
 		stopperEau();
+		progressBar.setProgress(0);
 		App.baignoire.reinitialiser();
 	}
 }
