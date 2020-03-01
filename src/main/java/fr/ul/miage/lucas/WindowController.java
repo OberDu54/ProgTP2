@@ -1,11 +1,15 @@
 package fr.ul.miage.lucas;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
 public class WindowController {
+	
+	private static final Logger LOG = Logger.getLogger(WindowController.class.getName());
 	
 	@FXML
 	private Button button;
@@ -23,11 +27,15 @@ public class WindowController {
 	private Label label;
 	
 	public void coulerEau() {
-		if(App.baignoire.getVolume()!=0) {
-			App.baignoire.reinitialiser();
+		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
+			if(App.baignoire.getVolume()!=0) {
+				App.baignoire.reinitialiser();
+			}
+			App.robinet.start();
+			App.fuite.start();
+		}else {
+			LOG.severe("Le service tourne déjà");
 		}
-		App.robinet.start();
-		App.fuite.start();
 	}
 	
 	public void stopperEau() {
