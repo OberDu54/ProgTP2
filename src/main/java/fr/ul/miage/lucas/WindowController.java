@@ -2,10 +2,14 @@ package fr.ul.miage.lucas;
 
 import java.util.logging.Logger;
 
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
+import javafx.scene.text.TextFlow;
 
 public class WindowController {
 	
@@ -24,7 +28,19 @@ public class WindowController {
 	public ProgressBar progressBar;
 	
 	@FXML
-	private Label label;
+	public Slider capSlider;
+	
+	@FXML
+	public Slider robSlider;
+	
+	@FXML
+	public Slider fuiSlider;
+	
+	@FXML
+	public Button majButton;
+	
+	@FXML
+	public TextFlow text;
 	
 	public void coulerEau() {
 		progressBar.setStyle("-fx-accent: blue;");
