@@ -1,17 +1,23 @@
 package fr.ul.miage.lucas;
 
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.text.TextFlow;
 
-public class WindowController {
+public class WindowController implements Initializable{
 	
 	private static final Logger LOG = Logger.getLogger(WindowController.class.getName());
 	
@@ -31,10 +37,19 @@ public class WindowController {
 	public Slider capSlider;
 	
 	@FXML
+	public Label capLabel;
+	
+	@FXML
 	public Slider robSlider;
 	
 	@FXML
+	public Label robLabel;
+	
+	@FXML
 	public Slider fuiSlider;
+	
+	@FXML
+	public Label fuiLabel;
 	
 	@FXML
 	public Button majButton;
@@ -92,5 +107,25 @@ public class WindowController {
 				LOG.severe("Aucune valeur ne doit être nulle");
 			}
 		}
+	}
+
+	public void initialize(URL location, ResourceBundle resources) {
+		final DecimalFormat f = new DecimalFormat();
+		f.setMaximumFractionDigits(2);
+		capSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				capLabel.setText("Capacité : " + f.format(newValue));
+			}
+		});
+		robSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				robLabel.setText("Robinet : " + f.format(newValue));
+			}			
+		});
+		fuiSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				fuiLabel.setText("Fuite : " + f.format(newValue));				
+			}	
+		});
 	}
 }

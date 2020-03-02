@@ -31,8 +31,8 @@
       <Slider fx:id="robSlider" layoutX="237.0" layoutY="353.0" majorTickUnit="100.0" max="500.0" showTickMarks="true" />
       <Button fx:id="majButton" layoutX="241.0" layoutY="395.0" mnemonicParsing="false" onAction="#miseAJour" prefHeight="25.0" prefWidth="133.0" text="Mettre à jour" textFill="#00c800" />
       <Slider fx:id="fuiSlider" layoutX="420.0" layoutY="353.0" majorTickUnit="100.0" max="500.0" showTickMarks="true" />
-      <Label layoutX="93.0" layoutY="326.0" text="Capacité" />
-      <Label layoutX="287.0" layoutY="326.0" text="Robinet" />
-      <Label layoutX="476.0" layoutY="326.0" text="Fuite" />
+      <Label fx:id="capLabel" layoutX="70.0" layoutY="326.0" text="Capacité" />
+      <Label fx:id="robLabel" layoutX="261.0" layoutY="326.0" text="Robinet" />
+      <Label fx:id="fuiLabel" layoutX="445.0" layoutY="326.0" text="Fuite" />
    </children>
 </AnchorPane>
