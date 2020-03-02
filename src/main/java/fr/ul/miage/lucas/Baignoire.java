@@ -41,6 +41,10 @@ public class Baignoire{
 		}
 	}
 	
+	public void setCapacite(int capacite) {
+		this.capacite = capacite;
+	}
+
 	public void reinitialiser() {
 		this.volume = 0;
 	}
