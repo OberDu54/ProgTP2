@@ -85,26 +85,28 @@ public class WindowController implements Initializable{
 	}
 	
 	public void miseAJour() {
-		int cap = (int) capSlider.getValue();
-		double rob = robSlider.getValue();
-		double fui = fuiSlider.getValue();
-		int verif = App.verification(cap, rob, fui);
-		if(verif==0) {
-			App.baignoire.setCapacite(cap);
-			App.robinet.setDebit(rob);
-			App.fuite.setDebit(fui);
-			LOG.info("Valeurs modifiées");
-		}else {
-			LOG.severe("Valeurs incorrectes");
-			switch(verif) {
-			case(1):
-				LOG.severe("La capacité de la baignoire doit être supérieure aux débits du robinet et de la fuite");
-				break;
-			case(2):
-				LOG.severe("Le débit du robinet doit être supérieur à celui de la fuite");
-				break;
-			case(3):
-				LOG.severe("Aucune valeur ne doit être nulle");
+		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
+			int cap = (int) capSlider.getValue();
+			double rob = robSlider.getValue();
+			double fui = fuiSlider.getValue();
+			int verif = App.verification(cap, rob, fui);
+			if(verif==0) {
+				App.baignoire.setCapacite(cap);
+				App.robinet.setDebit(rob);
+				App.fuite.setDebit(fui);
+				LOG.info("Valeurs modifiées");
+			}else {
+				LOG.severe("Valeurs incorrectes");
+				switch(verif) {
+				case(1):
+					LOG.severe("La capacité de la baignoire doit être supérieure aux débits du robinet et de la fuite");
+					break;
+				case(2):
+					LOG.severe("Le débit du robinet doit être supérieur à celui de la fuite");
+					break;
+				case(3):
+					LOG.severe("Aucune valeur ne doit être nulle");
+				}
 			}
 		}
 	}
