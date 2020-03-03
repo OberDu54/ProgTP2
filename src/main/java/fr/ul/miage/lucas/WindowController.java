@@ -111,6 +111,8 @@ public class WindowController implements Initializable{
 					errorLabel.setText("Aucune valeur ne doit être nulle");
 				}
 			}
+		}else{
+			errorLabel.setText("Impossible de changer les valeurs pendant l'execution");
 		}
 	}
 
