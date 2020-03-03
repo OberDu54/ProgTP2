@@ -1,5 +1,6 @@
 package fr.ul.miage.lucas;
 
+import java.awt.TextField;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -55,7 +56,10 @@ public class WindowController implements Initializable{
 	public Button majButton;
 	
 	@FXML
-	public TextFlow text;
+	public Label loadingLabel;
+	
+	@FXML
+	public Label errorLabel;
 	
 	public void coulerEau() {
 		progressBar.setStyle("-fx-accent: blue;");
@@ -64,7 +68,7 @@ public class WindowController implements Initializable{
 			App.robinet.start();
 			App.fuite.start();
 		}else {
-			LOG.severe("Le service tourne dÃ©jÃ ");
+			errorLabel.setText("Le service tourne déjà");
 		}
 	}
 
@@ -94,18 +98,17 @@ public class WindowController implements Initializable{
 				App.baignoire.setCapacite(cap);
 				App.robinet.setDebit(rob);
 				App.fuite.setDebit(fui);
-				LOG.info("Valeurs modifiées");
+				errorLabel.setText("");
 			}else {
-				LOG.severe("Valeurs incorrectes");
 				switch(verif) {
 				case(1):
-					LOG.severe("La capacité de la baignoire doit être supérieure aux débits du robinet et de la fuite");
+					errorLabel.setText("La capacité de la baignoire doit être supérieure aux débits du robinet et de la fuite");
 					break;
 				case(2):
-					LOG.severe("Le débit du robinet doit être supérieur à celui de la fuite");
+					errorLabel.setText("Le débit du robinet doit être supérieur à celui de la fuite");
 					break;
 				case(3):
-					LOG.severe("Aucune valeur ne doit être nulle");
+					errorLabel.setText("Aucune valeur ne doit être nulle");
 				}
 			}
 		}
