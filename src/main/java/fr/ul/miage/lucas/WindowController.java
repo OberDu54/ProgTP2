@@ -63,7 +63,7 @@ public class WindowController implements Initializable{
 	
 	public void coulerEau() {
 		progressBar.setStyle("-fx-accent: blue;");
-		progressBar.progressProperty().bind(App.robinet.createTask().progressProperty());
+		progressBar.progressProperty().bind(App.robinet.progressProperty());
 		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
 			App.robinet.start();
 			App.fuite.start();
@@ -131,6 +131,23 @@ public class WindowController implements Initializable{
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				fuiLabel.setText("Fuite : " + f.format(newValue));				
 			}	
+		});
+		App.robinet.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			public void handle(WorkerStateEvent event) {
+				App.robinet.reset();
+				progressBar.progressProperty().unbind();
+				App.baignoire.reinitialiser();
+			}
+			
+		});
+		App.fuite.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			public void handle(WorkerStateEvent event) {
+				App.fuite.reset();
+				progressBar.progressProperty().unbind();
+			}
+			
 		});
 	}
 }

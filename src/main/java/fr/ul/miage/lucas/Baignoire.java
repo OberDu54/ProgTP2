@@ -48,9 +48,5 @@ public class Baignoire{
 	public void reinitialiser() {
 		this.volume = 0;
 	}
-	
-	public void updateProgressBar(double x) {
-		System.out.println("=========MAJ DE LA BARRE==========");
-		progressBar.setProgress(x);
-	}
+
 }

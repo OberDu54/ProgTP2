@@ -56,6 +56,7 @@ public class App extends Application{
 		options.addOption(remplissage);
 		options.addOption(debitFuite);
 		CommandLineParser parser = new DefaultParser();
+		final ProgressBar progressBar = new ProgressBar();
 		int c = 100;	//capacite par defaut
 		double r = 2;	//remplissage par defaut
 		double f = 0.5;	//fuite par defaut
@@ -76,18 +77,18 @@ public class App extends Application{
 			fuite.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 				
 				public void handle(WorkerStateEvent event) {
+					
 					fuite.reset();
 				}
 			});
 			robinet.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
 				public void handle(WorkerStateEvent event) {
+
 					robinet.reset();
-					
 				}
 			});
-			ProgressBar progressBar = new ProgressBar();
-			progressBar.progressProperty().bind(robinet.progressProperty());
+
 			int verif = verification(c, r, f);
 			switch(verif) {
 			case(0):
