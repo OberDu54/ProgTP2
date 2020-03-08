@@ -137,6 +137,7 @@ public class WindowController implements Initializable{
 		App.robinet.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
 			public void handle(WorkerStateEvent event) {
+				progressBar.setStyle("-fx-accent: green;");
 				App.robinet.reset();
 				progressBar.progressProperty().unbind();
 				App.baignoire.reinitialiser();
@@ -147,7 +148,6 @@ public class WindowController implements Initializable{
 
 			public void handle(WorkerStateEvent event) {
 				App.fuite.reset();
-				progressBar.progressProperty().unbind();
 			}
 			
 		});
