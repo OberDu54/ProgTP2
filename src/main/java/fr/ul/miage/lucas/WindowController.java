@@ -151,5 +151,8 @@ public class WindowController implements Initializable{
 			}
 			
 		});
+		capSlider.adjustValue(App.baignoire.getCapacite());
+		robSlider.adjustValue(App.robinet.getDebit());
+		fuiSlider.adjustValue(App.fuite.getDebit());
 	}
 }
