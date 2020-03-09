@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 
 public class WindowController implements Initializable{
@@ -56,12 +57,14 @@ public class WindowController implements Initializable{
 	public Button majButton;
 	
 	@FXML
-	public Label loadingLabel;
+	public Label resultLabel;
 	
 	@FXML
 	public Label errorLabel;
 	
 	public void coulerEau() {
+		resultLabel.setTextFill(Color.GREEN);
+		resultLabel.setText("Remplissage en cours...");
 		progressBar.setStyle("-fx-accent: blue;");
 		progressBar.progressProperty().bind(App.robinet.progressProperty());
 		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
@@ -73,6 +76,8 @@ public class WindowController implements Initializable{
 	}
 
 	public void stopperEau() {
+		resultLabel.setTextFill(Color.RED);
+		resultLabel.setText("Processus en pause...");
 		progressBar.setStyle("-fx-accent: red;");
 		progressBar.progressProperty().unbind();
 		App.robinet.cancel();
@@ -84,6 +89,7 @@ public class WindowController implements Initializable{
 	public void recommencer() {
 		progressBar.progressProperty().unbind();
 		stopperEau();
+		resultLabel.setText("Processus stoppé !");
 		progressBar.setProgress(0);
 		App.baignoire.reinitialiser();
 	}
@@ -98,8 +104,10 @@ public class WindowController implements Initializable{
 				App.baignoire.setCapacite(cap);
 				App.robinet.setDebit(rob);
 				App.fuite.setDebit(fui);
-				errorLabel.setText("");
+				errorLabel.setTextFill(Color.BLUE);
+				errorLabel.setText("Valeurs mises à jour");
 			}else {
+				errorLabel.setTextFill(Color.RED);
 				switch(verif) {
 				case(1):
 					errorLabel.setText("La capacité de la baignoire doit être supérieure aux débits du robinet et de la fuite");
@@ -112,6 +120,7 @@ public class WindowController implements Initializable{
 				}
 			}
 		}else{
+			errorLabel.setTextFill(Color.RED);
 			errorLabel.setText("Impossible de changer les valeurs pendant l'execution");
 		}
 	}
@@ -137,6 +146,8 @@ public class WindowController implements Initializable{
 		App.robinet.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
 			public void handle(WorkerStateEvent event) {
+				resultLabel.setTextFill(Color.GREEN);
+				resultLabel.setText("Terminé !");
 				progressBar.setStyle("-fx-accent: green;");
 				App.robinet.reset();
 				progressBar.progressProperty().unbind();

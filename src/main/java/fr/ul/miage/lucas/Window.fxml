@@ -29,10 +29,10 @@
       <Slider fx:id="robSlider" layoutX="237.0" layoutY="353.0" majorTickUnit="100.0" max="500.0" showTickMarks="true" />
       <Button fx:id="majButton" layoutX="241.0" layoutY="395.0" mnemonicParsing="false" onAction="#miseAJour" prefHeight="25.0" prefWidth="133.0" text="Mettre à jour" textFill="#00c800" />
       <Slider fx:id="fuiSlider" layoutX="420.0" layoutY="353.0" majorTickUnit="100.0" max="500.0" showTickMarks="true" />
-      <Label fx:id="capLabel" layoutX="74.0" layoutY="326.0" prefHeight="17.0" prefWidth="84.0" text="Capacité : 50" />
-      <Label fx:id="robLabel" layoutX="279.0" layoutY="326.0" text="Robinet : 0" textAlignment="CENTER" />
-      <Label fx:id="fuiLabel" layoutX="465.0" layoutY="326.0" text="Fuite : 0" textAlignment="CENTER" />
-      <Label fx:id="loadingLabel" layoutX="231.0" layoutY="77.0" prefHeight="17.0" prefWidth="152.0" textAlignment="CENTER" />
-      <Label fx:id="errorLabel" layoutX="133.0" layoutY="428.0" prefHeight="17.0" prefWidth="348.0" textAlignment="CENTER" textFill="RED" />
+      <Label fx:id="capLabel" alignment="CENTER" layoutX="74.0" layoutY="326.0" prefHeight="17.0" prefWidth="84.0" text="Capacité : 50" />
+      <Label fx:id="robLabel" alignment="CENTER" layoutX="279.0" layoutY="326.0" text="Robinet : 0" textAlignment="CENTER" />
+      <Label fx:id="fuiLabel" alignment="CENTER" layoutX="465.0" layoutY="326.0" text="Fuite : 0" textAlignment="CENTER" />
+      <Label fx:id="resultLabel" alignment="CENTER" layoutX="236.0" layoutY="77.0" prefHeight="17.0" prefWidth="152.0" textAlignment="CENTER" textFill="LIME" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="133.0" layoutY="428.0" prefHeight="17.0" prefWidth="348.0" textAlignment="CENTER" textFill="RED" />
    </children>
 </AnchorPane>
