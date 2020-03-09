@@ -105,7 +105,17 @@ public class App extends Application{
 			case(3):
 				LOG.severe("Aucun valeur ne doit ï¿½tre nulle");
 				break;
+			case(4):
+				LOG.severe("Le debit du robinet doit être inférieur à 500");
+				break;
+			case(5):
+				LOG.severe("Le debit de la fuite doit être inférieur à 500");
+				break;
+			case(6):
+				LOG.severe("La capacité de la baignoire doit être inférieure à 5000");
+				break;
 			}
+
 		} catch (ParseException e) {
 			LOG.severe("exeption levee");
 			e.printStackTrace();
@@ -122,6 +132,15 @@ public class App extends Application{
 		}
 		if(rob==0||fuite==0||cap==0) {
 			res = 3;
+		}
+		if(rob>500) {
+			res = 4;
+		}
+		if(fuite>500) {
+			res = 5;
+		}
+		if(cap>5000) {
+			res = 6;
 		}
 		return res;
 	}
