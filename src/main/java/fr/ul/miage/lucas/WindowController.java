@@ -71,27 +71,31 @@ public class WindowController implements Initializable{
 			App.robinet.start();
 			App.fuite.start();
 		}else {
-			errorLabel.setText("Le service tourne déjà");
+			errorLabel.setText("Le service tourne dï¿½jï¿½");
 		}
 	}
 
 	public void stopperEau() {
-		resultLabel.setTextFill(Color.RED);
-		resultLabel.setText("Processus en pause...");
-		progressBar.setStyle("-fx-accent: red;");
-		progressBar.progressProperty().unbind();
-		App.robinet.cancel();
-		App.fuite.cancel();
-		App.robinet.reset();
-		App.fuite.reset();
+		if(App.robinet.isRunning()||App.fuite.isRunning()) {
+			resultLabel.setTextFill(Color.RED);
+			resultLabel.setText("Processus en pause...");
+			progressBar.setStyle("-fx-accent: red;");
+			progressBar.progressProperty().unbind();
+			App.robinet.cancel();
+			App.fuite.cancel();
+			App.robinet.reset();
+			App.fuite.reset();
+		}
 	}
 	
 	public void recommencer() {
-		progressBar.progressProperty().unbind();
-		stopperEau();
-		resultLabel.setText("Processus stoppé !");
-		progressBar.setProgress(0);
-		App.baignoire.reinitialiser();
+		if(App.robinet.isRunning()||App.fuite.isRunning()) {
+			progressBar.progressProperty().unbind();
+			stopperEau();
+			resultLabel.setText("Processus stoppï¿½ !");
+			progressBar.setProgress(0);
+			App.baignoire.reinitialiser();
+		}
 	}
 	
 	public void miseAJour() {
@@ -105,18 +109,19 @@ public class WindowController implements Initializable{
 				App.robinet.setDebit(rob);
 				App.fuite.setDebit(fui);
 				errorLabel.setTextFill(Color.BLUE);
-				errorLabel.setText("Valeurs mises à jour");
+				errorLabel.setText("Valeurs mises ï¿½ jour");
 			}else {
 				errorLabel.setTextFill(Color.RED);
 				switch(verif) {
 				case(1):
-					errorLabel.setText("La capacité de la baignoire doit être supérieure aux débits du robinet et de la fuite");
+					errorLabel.setText("La capacitï¿½ de la baignoire doit ï¿½tre supï¿½rieure aux dï¿½bits du robinet et de la fuite");
 					break;
 				case(2):
-					errorLabel.setText("Le débit du robinet doit être supérieur à celui de la fuite");
+					errorLabel.setText("Le dï¿½bit du robinet doit ï¿½tre supï¿½rieur ï¿½ celui de la fuite");
 					break;
 				case(3):
-					errorLabel.setText("Aucune valeur ne doit être nulle");
+					errorLabel.setText("Aucune valeur ne doit ï¿½tre nulle");
+					
 				}
 			}
 		}else{
@@ -130,7 +135,7 @@ public class WindowController implements Initializable{
 		f.setMaximumFractionDigits(2);
 		capSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				capLabel.setText("Capacité : " + f.format(newValue));
+				capLabel.setText("Capacitï¿½ : " + f.format(newValue));
 			}
 		});
 		robSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -147,7 +152,7 @@ public class WindowController implements Initializable{
 
 			public void handle(WorkerStateEvent event) {
 				resultLabel.setTextFill(Color.GREEN);
-				resultLabel.setText("Terminé !");
+				resultLabel.setText("Terminï¿½ !");
 				progressBar.setStyle("-fx-accent: green;");
 				App.robinet.reset();
 				progressBar.progressProperty().unbind();
