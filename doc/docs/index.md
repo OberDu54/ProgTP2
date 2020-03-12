@@ -1,17 +1,28 @@
-# Welcome to MkDocs
+# Accueil
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Description du programme
 
-## Commands
+Ce programme écrit vous permet de simuler en temps réel le remplissage d'une baignoire qui fuit en même temps.
+Le code source est intégralement écrit en java, le framework java fx a été utilisé pour programmer l'interface utilisateur.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Outils utilisés
+* IDE Eclipse pour l'écriture du code
+* SceneBuilder pour la conception de l'interface utilisateur 
+* Git et GitKraken pour la gestion de versions
+* Maven pour le déploiement
+* MkDocs et javadoc pour l'écriture de la documentation
+* jUnit pour l'écriture des textes unitaires
+* ObjectAid UML pour la génération du diagramme de classes
 
-## Project layout
+## Auteur 
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Lucas Oberhausser
+
+## Versions 
+
+* Version de java : java 8
+* Version de jUnit : jUnit 5
+* Encodage : UTF-8
+
+## Licence
+Distribué sous la licence Apache License, Version 2.0.

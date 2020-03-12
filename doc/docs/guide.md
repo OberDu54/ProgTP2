@@ -1,5 +1,9 @@
 # Guide utilisateur
 
+## Installation
+
+### Prérequis
+
 ## Lancement 
 
 Vous pouvez lancer l'application de deux manières différentes :

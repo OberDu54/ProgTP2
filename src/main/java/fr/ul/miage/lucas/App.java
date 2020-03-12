@@ -142,7 +142,7 @@ public class App extends Application{
 			}
 
 		} catch (ParseException e) {
-			LOG.severe("exeption levee");
+			LOG.severe("Exeption levee");
 			e.printStackTrace();
 		}
 	}
