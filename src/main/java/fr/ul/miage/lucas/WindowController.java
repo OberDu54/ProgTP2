@@ -19,49 +19,100 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 
+/**
+ * Controleur de l'interface
+ * 
+ * @author Lucas Oberhausser
+ *
+ */
 public class WindowController implements Initializable{
 	
+	/**
+	 * Logger
+	 */
 	private static final Logger LOG = Logger.getLogger(WindowController.class.getName());
 	
+	/**
+	 * Bouton pour lancer le processus 
+	 */
 	@FXML
 	private Button button;
 	
+	/**
+	 * Bouton stop 
+	 */
 	@FXML
 	private Button stopButton;
 	
+	/**
+	 * Bouton pause
+	 */
 	@FXML
 	private Button pauseButton;
 	
+	/**
+	 * Barre de progression
+	 */
 	@FXML
 	public ProgressBar progressBar;
 	
+	/**
+	 * Slider reglant la capacité de la baignoire
+	 */
 	@FXML
 	public Slider capSlider;
 	
+	/**
+	 * Label associé au slider de capacité 
+	 */
 	@FXML
 	public Label capLabel;
 	
+	/**
+	 * Slider reglant le debit du robinet
+	 */
 	@FXML
 	public Slider robSlider;
 	
+	/**
+	 * Label associé au slider du robinet 
+	 */
 	@FXML
 	public Label robLabel;
 	
+	/**
+	 * Slider permettant de regler le débit de la fuite 
+	 */
 	@FXML
 	public Slider fuiSlider;
 	
+	/**
+	 * Label associé au slider de la fuite 
+	 */
 	@FXML
 	public Label fuiLabel;
 	
+	/**
+	 * Bouton pour mettre a jour les valeurs 
+	 */
 	@FXML
 	public Button majButton;
 	
+	/**
+	 * Label indiquant l'état du processus
+	 */
 	@FXML
 	public Label resultLabel;
 	
+	/**
+	 * Label indiquant si les mises à jour ont été effectives
+	 */
 	@FXML
 	public Label errorLabel;
 	
+	/**
+	 * Méthode faisant couler l'eau, déclenchée par le bouton lancement
+	 */
 	public void coulerEau() {
 		resultLabel.setTextFill(Color.GREEN);
 		resultLabel.setText("Remplissage en cours...");
@@ -74,7 +125,10 @@ public class WindowController implements Initializable{
 			errorLabel.setText("Le service tourne d�j�");
 		}
 	}
-
+	
+	/**
+	 * Stoppe l'eau, déclenchée par le bouton pause
+	 */
 	public void stopperEau() {
 		if(App.robinet.isRunning()||App.fuite.isRunning()) {
 			resultLabel.setTextFill(Color.RED);
@@ -88,6 +142,9 @@ public class WindowController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Stoppe l'eau et vide entièrement la baignoire
+	 */
 	public void recommencer() {
 		if(App.robinet.isRunning()||App.fuite.isRunning()) {
 			progressBar.progressProperty().unbind();
@@ -98,6 +155,9 @@ public class WindowController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Modifie les variables selon les valeurs des sliders  
+	 */
 	public void miseAJour() {
 		if(!App.robinet.isRunning()&&!App.fuite.isRunning()) {
 			int cap = (int) capSlider.getValue();
@@ -129,7 +189,10 @@ public class WindowController implements Initializable{
 			errorLabel.setText("Impossible de changer les valeurs pendant l'execution");
 		}
 	}
-
+	
+	/**
+	 * Méthode appellée à l'instanciation de l'interface, initialise certains éléments 
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		final DecimalFormat f = new DecimalFormat();
 		f.setMaximumFractionDigits(2);

@@ -3,12 +3,30 @@ package fr.ul.miage.lucas;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
+/**
+ * Classe représentant un robinet
+ * 
+ * @author Lucas Oberhausser
+ *
+ */
 public class Robinet extends Service<Void>{
 	
+	/**
+	 * Débit du robinet en litre/seconde
+	 */
 	private double debit;
 	
+	/**
+	 * Baignoire associée à ce robinet 
+	 */
 	private Baignoire baignoire;
 	
+	/**
+	 * Constructeur
+	 * 
+	 * @param debit Debit du robinet
+	 * @param b Baingoire associée
+	 */
 	public Robinet(double debit, Baignoire b) {
 		super();
 		this.debit = debit;
@@ -23,6 +41,9 @@ public class Robinet extends Service<Void>{
 		this.debit = debit;
 	}
 	
+	/**
+	 * Methode principale appellée par start()
+	 */
 	@Override
 	protected Task<Void> createTask() {
 		return new Task<Void>(){
