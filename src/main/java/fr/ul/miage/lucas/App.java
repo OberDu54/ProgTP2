@@ -19,16 +19,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
+/**
+ * Classe principale
+ * 
+ * @author Lucas Oberhausser
+ *
+ */
 public class App extends Application{
 	
+	/**
+	 * Logger 
+	 */
 	public static final Logger LOG = Logger.getLogger(App.class.getName());
 	
+	/**
+	 * Baignoire statique pour Ãªtre visible par toutes les autres classes 
+	 */
 	public static Baignoire baignoire;
 	
+	/**
+	 * Robinet statique
+	 */
 	public static Fuite fuite;
 	
+	/**
+	 * Fuite statique
+	 */
 	public static Robinet robinet;
 	
+	/**
+	 * MÃ©thode qui initialise l'interface
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("TP2_Oberhausser");
@@ -44,6 +65,10 @@ public class App extends Application{
 		primaryStage.show();
 	}
 	
+	/**
+	 * MÃ©thode principale
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Options options = new Options();
 		Option cap = new Option("c", "capacity", true, "Capacite de la baignoire");
@@ -106,13 +131,13 @@ public class App extends Application{
 				LOG.severe("Aucun valeur ne doit ï¿½tre nulle");
 				break;
 			case(4):
-				LOG.severe("Le debit du robinet doit être inférieur à 500");
+				LOG.severe("Le debit du robinet doit ï¿½tre infï¿½rieur ï¿½ 500");
 				break;
 			case(5):
-				LOG.severe("Le debit de la fuite doit être inférieur à 500");
+				LOG.severe("Le debit de la fuite doit ï¿½tre infï¿½rieur ï¿½ 500");
 				break;
 			case(6):
-				LOG.severe("La capacité de la baignoire doit être inférieure à 5000");
+				LOG.severe("La capacitï¿½ de la baignoire doit ï¿½tre infï¿½rieure ï¿½ 5000");
 				break;
 			}
 
@@ -122,6 +147,13 @@ public class App extends Application{
 		}
 	}
 	
+	/**
+	 * MÃ©thode utilisÃ©e pour verifier que les rÃ¨gles des variables sont respectÃ©es
+	 * @param cap CapacitÃ© de la baignoire
+	 * @param rob DÃ©bit du robinet 
+	 * @param fuite DÃ©bit de la fuite 
+	 * @return Un code d'erreur, 0 si les conditions sont bonnes
+	 */
 	public static int verification(int cap, double rob, double fuite) {
 		int res = 0;
 		if(cap<=rob || cap<=fuite) {
