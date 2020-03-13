@@ -171,7 +171,7 @@ public class App extends Application{
 		if(fuite>500) {
 			res = 5;
 		}
-		if(cap>5000) {
+		if(cap<50 || cap>5000) {
 			res = 6;
 		}
 		return res;
