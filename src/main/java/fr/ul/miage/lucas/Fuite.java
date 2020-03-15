@@ -54,7 +54,6 @@ public class Fuite extends Service<Void>{
 			protected Void call() throws Exception {
 				while(!baignoire.estPleine()) {
 					if(baignoire.getVolume()!=0) {baignoire.vider(debit/1000);}
-					System.out.println("capacite -- : " + baignoire.getVolume());
 					Thread.sleep(1);
 					if(isCancelled()) {
 						break;
@@ -64,8 +63,5 @@ public class Fuite extends Service<Void>{
 			}
 		};
 	}
-	
-	
-	
 	
 }

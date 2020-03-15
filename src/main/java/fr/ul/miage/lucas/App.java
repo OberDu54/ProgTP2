@@ -57,7 +57,7 @@ public class App extends Application{
 		try {
 			root = FXMLLoader.load(getClass().getResource("Window.fxml"));
 		}catch(IOException e) {
-			System.out.println("Erreur de chargement de l'interface");
+			LOG.severe("Erreur de chargement de l'interface");
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root);
@@ -117,32 +117,32 @@ public class App extends Application{
 			int verif = verification(c, r, f);
 			switch(verif) {
 			case(0):
-				LOG.info("Donn�es valid�es");
+				LOG.info("Données validées");
 				LOG.info("Lancement...");
 				launch(args);
 				break;
 			case(1):
-				LOG.severe("La capacite de la baignoire doit �tre sup�rieure au debit du robinet et de la fuite");
+				LOG.severe("La capacite de la baignoire doit être supérieure au debit du robinet et de la fuite");
 				break;
 			case(2):
-				LOG.severe("Le d�bit du robinet ne doit pas �tre inf�rieur � celui de la fuite");
+				LOG.severe("Le débit du robinet ne doit pas être inférieur à celui de la fuite");
 				break;
 			case(3):
-				LOG.severe("Aucun valeur ne doit �tre nulle");
+				LOG.severe("Aucune valeur ne doit être nulle");
 				break;
 			case(4):
-				LOG.severe("Le debit du robinet doit �tre inf�rieur � 500");
+				LOG.severe("Le debit du robinet doit être inférieur à 500");
 				break;
 			case(5):
-				LOG.severe("Le debit de la fuite doit �tre inf�rieur � 500");
+				LOG.severe("Le debit de la fuite doit être inférieur à 500");
 				break;
 			case(6):
-				LOG.severe("La capacit� de la baignoire doit �tre inf�rieure � 5000");
+				LOG.severe("La capacité de la baignoire doit être inférieure à 5000");
 				break;
 			}
 
 		} catch (ParseException e) {
-			LOG.severe("Exeption levee");
+			LOG.severe("Exeption levée");
 			e.printStackTrace();
 		}
 	}

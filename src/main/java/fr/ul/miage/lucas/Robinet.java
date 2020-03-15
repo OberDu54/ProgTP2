@@ -52,8 +52,6 @@ public class Robinet extends Service<Void>{
 			protected Void call() throws Exception {
 				while(!baignoire.estPleine()&&!isCancelled()) {
 					baignoire.remplir(debit/1000);
-					System.out.println("capacite ++ : " + baignoire.getVolume());
-					//baignoire.updateProgressBar(baignoire.getCapacite()/baignoire.getVolume());
 					updateProgress(baignoire.getVolume(), baignoire.getCapacite());
 					Thread.sleep(1);
 					if(isCancelled()) {
