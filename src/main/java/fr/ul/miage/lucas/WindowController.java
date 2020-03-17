@@ -169,7 +169,7 @@ public class WindowController implements Initializable{
 				App.robinet.setDebit(rob);
 				App.fuite.setDebit(fui);
 				errorLabel.setTextFill(Color.BLUE);
-				errorLabel.setText("Valeurs mises � jour");
+				errorLabel.setText("Valeurs mises a jour");
 			}else {
 				errorLabel.setTextFill(Color.RED);
 				switch(verif) {
@@ -198,7 +198,7 @@ public class WindowController implements Initializable{
 		f.setMaximumFractionDigits(2);
 		capSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				capLabel.setText("Capacit� : " + f.format(newValue));
+				capLabel.setText("Capacite : " + f.format(newValue));
 			}
 		});
 		robSlider.valueProperty().addListener(new ChangeListener<Number>() {
