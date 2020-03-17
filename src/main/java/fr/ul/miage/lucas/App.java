@@ -10,6 +10,9 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import fr.ul.miage.lucas.Baignoire;
+import fr.ul.miage.lucas.Fuite;
+import fr.ul.miage.lucas.Robinet;
 import javafx.application.Application;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
@@ -122,27 +125,27 @@ public class App extends Application{
 				launch(args);
 				break;
 			case(1):
-				LOG.severe("La capacite de la baignoire doit être supérieure au debit du robinet et de la fuite");
+				LOG.severe("La capacite de la baignoire doit etre supérieure au debit du robinet et de la fuite");
 				break;
 			case(2):
-				LOG.severe("Le débit du robinet ne doit pas être inférieur à celui de la fuite");
+				LOG.severe("Le debit du robinet ne doit pas etre inferieur a celui de la fuite");
 				break;
 			case(3):
-				LOG.severe("Aucune valeur ne doit être nulle");
+				LOG.severe("Aucune valeur ne doit etre nulle");
 				break;
 			case(4):
-				LOG.severe("Le debit du robinet doit être inférieur à 500");
+				LOG.severe("Le debit du robinet doit être inferieur à 500");
 				break;
 			case(5):
-				LOG.severe("Le debit de la fuite doit être inférieur à 500");
+				LOG.severe("Le debit de la fuite doit être inferieur à 500");
 				break;
 			case(6):
-				LOG.severe("La capacité de la baignoire doit être inférieure à 5000");
+				LOG.severe("La capacité de la baignoire doit être inferieure à 5000");
 				break;
 			}
 
 		} catch (ParseException e) {
-			LOG.severe("Exeption levée");
+			LOG.severe("Exeption levee");
 			e.printStackTrace();
 		}
 	}

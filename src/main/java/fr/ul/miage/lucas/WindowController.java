@@ -149,7 +149,7 @@ public class WindowController implements Initializable{
 		if(App.robinet.isRunning()||App.fuite.isRunning()) {
 			progressBar.progressProperty().unbind();
 			stopperEau();
-			resultLabel.setText("Processus stopp� !");
+			resultLabel.setText("Arret du processus !");
 			progressBar.setProgress(0);
 			App.baignoire.reinitialiser();
 		}
@@ -174,13 +174,13 @@ public class WindowController implements Initializable{
 				errorLabel.setTextFill(Color.RED);
 				switch(verif) {
 				case(1):
-					errorLabel.setText("La capacit� de la baignoire doit �tre sup�rieure aux d�bits du robinet et de la fuite");
+					errorLabel.setText("La capacite de la baignoire doit etre superieure aux debits du robinet et de la fuite");
 					break;
 				case(2):
-					errorLabel.setText("Le d�bit du robinet doit �tre sup�rieur � celui de la fuite");
+					errorLabel.setText("Le debit du robinet doit etre superieur a celui de la fuite");
 					break;
 				case(3):
-					errorLabel.setText("Aucune valeur ne doit �tre nulle");
+					errorLabel.setText("Aucune valeur ne doit etre nulle");
 					
 				}
 			}
@@ -215,7 +215,7 @@ public class WindowController implements Initializable{
 
 			public void handle(WorkerStateEvent event) {
 				resultLabel.setTextFill(Color.GREEN);
-				resultLabel.setText("Termin� !");
+				resultLabel.setText("Termine !");
 				progressBar.setStyle("-fx-accent: green;");
 				App.robinet.reset();
 				progressBar.progressProperty().unbind();
